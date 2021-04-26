@@ -11,24 +11,31 @@
 </head>
 <body>
 <div class="seznam">
-    <a href="/detail">
-        <div class="vizitka">
-            <div class="jmeno">Dita (Přikrylová) Formánková</div>
-            <div class="firma">Czechitas z. s.</div>
+    <a href="/detail" th:href="@{/detail(id=${iterStat.index})}">
+        <div th:each="vizitky, iterStat : ${vizitky}" class="vizitka">
+            <div th:text="${vizitky.jmeno}" class="jmeno">Dita (Přikrylová) Formánková</div>
+            <div th:text="${vizitky.firma}" class="firma">Czechitas z. s.</div>
             <div class="udaje">
                 <div class="adresa">
-                    <div>Václavské náměstí 837/11</div>
-                    <div><span>11000</span> Praha 1</div>
+                    <div th:text="${vizitky.ulice}">Václavské náměstí 837/11</div>
+                    <div th:text="${vizitky.obecPsc}"><span>11000</span> Praha 1</div>
                 </div>
                 <div class="kontakty">
-                    <div><i class="las la-at"></i> <span>dita@czechitas.cs</span></div>
-                    <div><i class="las la-phone-alt"></i> <span>+420 800123456</span></div>
-                    <div><i class="las la-globe"></i> <span>www.czechitas.cz</span></div>
+                    <div><i th:if="${vizitky.email} != null" class="las la-at"></i> <span th:if="${vizitky.email} != null" th:text="${vizitky.email}">dita@czechitas.cs</span>
+                        <span th:if="${vizitky.email} == null"> </span>
+                    </div>
+                    <div><i th:if="${vizitky.telefon} != null" class="las la-phone-alt"></i> <span th:if="${vizitky.telefon} != null" th:text="${vizitky.telefon}">+420 800123456</span>
+                        <span th:if="${vizitky.telefon} == null"> </span>
+                    </div>
+                    <div><i th:if="${vizitky.web} != null" class="las la-globe"></i> <span th:if="${vizitky.web} != null" th:text="${vizitky.web}">www.czechitas.cz</span>
+                        <span th:if="${vizitky.web} == null"> </span>
+                    </div>
                 </div>
             </div>
         </div>
     </a>
 
+    <!--
     <a href="/detail">
         <div class="vizitka">
             <div class="jmeno">Barbora Bühnová</div>
@@ -80,6 +87,7 @@
             </div>
         </div>
     </a>
+    -->
 </div>
 </body>
 </html>
