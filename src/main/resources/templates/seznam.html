@@ -11,8 +11,8 @@
 </head>
 <body>
 <div class="seznam">
-    <a href="/detail" th:href="@{/detail(id=${iterStat.index})}">
-        <div th:each="vizitky, iterStat : ${vizitky}" class="vizitka">
+    <a href="/detail" th:each="vizitky, iterStat : ${vizitky}" th:href="@{/detail(id=${iterStat.index})}">
+        <div class="vizitka">
             <div th:text="${vizitky.jmeno}" class="jmeno">Dita (Přikrylová) Formánková</div>
             <div th:text="${vizitky.firma}" class="firma">Czechitas z. s.</div>
             <div class="udaje">
